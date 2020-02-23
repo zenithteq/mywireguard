@@ -153,8 +153,8 @@ esac
 chmod 600 -R /etc/wireguard/
 
 # Enable routing on the server
-echo "net.ipv4.ip_forward = 1
-net.ipv6.conf.all.forwarding = 1" > /etc/sysctl.d/wg.conf
+echo "net.ipv4.ip_forward=1
+net.ipv6.conf.all.forwarding=1" > /etc/sysctl.d/wg.conf
 
 sysctl --system
 
