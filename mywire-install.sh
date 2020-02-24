@@ -99,6 +99,18 @@ esac
 
 chmod 600 -R /etc/wireguard/
 
+## firewalld by JB
+echo "<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>wireguard</short>
+  <description>WireGuard (wg) custom installation</description>
+  <port protocol="udp" port="$SERVER_PORT"/>
+</service>" > "/etc/firewalld/services/wireguard.xml"
+
+firewall-cmd --add-service=wireguard --zone=public --permanent
+firewall-cmd --zone=public --add-masquerade --permanent
+firewall-cmd --reload
+
 # Enable routing on the server
 echo "net.ipv4.ip_forward=1
 net.ipv6.conf.all.forwarding=1" > /etc/sysctl.d/wg.conf
