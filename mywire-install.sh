@@ -100,12 +100,13 @@ esac
 chmod 600 -R /etc/wireguard/
 
 ## firewalld by JB
-echo "<?xml version="1.0" encoding="utf-8"?>
+tee /etc/firewalld/services/wireguard.xml
+<?xml version="1.0" encoding="utf-8"?>
 <service>
   <short>wireguard</short>
   <description>WireGuard (wg) custom installation</description>
-  <port protocol="udp" port="$SERVER_PORT"/>
-</service>" > "/etc/firewalld/services/wireguard.xml"
+  <port protocol="udp" port="1194"/>
+</service>
 
 firewall-cmd --add-service=wireguard --zone=public --permanent
 firewall-cmd --zone=public --add-masquerade --permanent
