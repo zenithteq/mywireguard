@@ -118,7 +118,7 @@ CLIENT_PUB_KEY=$(echo "$CLIENT_PRIV_KEY" | wg pubkey)
 
 # Add server interface
 echo "[Interface]
-Address = $SERVER_WG_IPV4/24,$SERVER_WG_IPV6/64
+Address = $SERVER_WG_IPV4/24
 ListenPort = $SERVER_PORT
 PrivateKey = $SERVER_PRIV_KEY
 PostUp = iptables -A FORWARD -i $SERVER_WG_NIC -j ACCEPT; iptables -t nat -A POSTROUTING -o $SERVER_PUB_NIC -j MASQUERADE; ip6tables -A FORWARD -i $SERVER_WG_NIC -j ACCEPT; ip6tables -t nat -A POSTROUTING -o $SERVER_PUB_NIC -j MASQUERADE
@@ -127,19 +127,19 @@ PostDown = iptables -D FORWARD -i $SERVER_WG_NIC -j ACCEPT; iptables -t nat -D P
 # Add the client as a peer to the server
 echo "[Peer]
 PublicKey = $CLIENT_PUB_KEY
-AllowedIPs = $CLIENT_WG_IPV4/32,$CLIENT_WG_IPV6/128" >> "/etc/wireguard/$SERVER_WG_NIC.conf"
+AllowedIPs = $CLIENT_WG_IPV4/32" >> "/etc/wireguard/$SERVER_WG_NIC.conf"
 
 # Create client file with interface
 echo "[Interface]
 PrivateKey = $CLIENT_PRIV_KEY
-Address = $CLIENT_WG_IPV4/24,$CLIENT_WG_IPV6/64
+Address = $CLIENT_WG_IPV4/24
 DNS = $CLIENT_DNS_1,$CLIENT_DNS_2" > "$HOME/$SERVER_WG_NIC-client.conf"
 
 # Add the server as a peer to the client
 echo "[Peer]
 PublicKey = $SERVER_PUB_KEY
 Endpoint = $ENDPOINT
-AllowedIPs = 0.0.0.0/0,::/0" >> "$HOME/$SERVER_WG_NIC-client.conf"
+AllowedIPs = 0.0.0.0/0" >> "$HOME/$SERVER_WG_NIC-client.conf"
 
 # Add pre shared symmetric key to respective files
 case "$SYM_KEY" in
