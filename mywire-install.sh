@@ -48,8 +48,8 @@ read -rp "WireGuard interface name: " -e -i "$SERVER_WG_NIC" SERVER_WG_NIC
 SERVER_WG_IPV4="10.66.66.1"
 read -rp "Server's WireGuard IPv4 " -e -i "$SERVER_WG_IPV4" SERVER_WG_IPV4
 
-SERVER_WG_IPV6="fd42:42:42::1"
-read -rp "Server's WireGuard IPv6 " -e -i "$SERVER_WG_IPV6" SERVER_WG_IPV6
+#SERVER_WG_IPV6="fd42:42:42::1"
+#read -rp "Server's WireGuard IPv6 " -e -i "$SERVER_WG_IPV6" SERVER_WG_IPV6
 
 SERVER_PORT=1194
 read -rp "Server's WireGuard port " -e -i "$SERVER_PORT" SERVER_PORT
@@ -57,8 +57,8 @@ read -rp "Server's WireGuard port " -e -i "$SERVER_PORT" SERVER_PORT
 CLIENT_WG_IPV4="10.66.66.2"
 read -rp "Client's WireGuard IPv4 " -e -i "$CLIENT_WG_IPV4" CLIENT_WG_IPV4
 
-CLIENT_WG_IPV6="fd42:42:42::2"
-read -rp "Client's WireGuard IPv6 " -e -i "$CLIENT_WG_IPV6" CLIENT_WG_IPV6
+#CLIENT_WG_IPV6="fd42:42:42::2"
+#read -rp "Client's WireGuard IPv6 " -e -i "$CLIENT_WG_IPV6" CLIENT_WG_IPV6
 
 # Adguard DNS by default
 CLIENT_DNS_1="176.103.130.130"
