@@ -69,7 +69,7 @@ CLIENT_PUB_KEY=$(echo "$CLIENT_PRIV_KEY" | wg pubkey)
 echo "[Interface]
 Address = $SERVER_WG_IPV4/24
 ListenPort = $SERVER_PORT
-PrivateKey = $SERVER_PRIV_KEY
+PrivateKey = $SERVER_PRIV_KEY" > "/etc/wireguard/$SERVER_WG_NIC.conf"
 
 # Add the client as a peer to the server
 echo "[Peer]
